@@ -34,28 +34,30 @@ py2exe_options = {
 }
 
 # Get the version from youtube_dl/version.py without importing the package
-exec(compile(open("youtube_dl/version.py").read(), "youtube_dl/version.py", "exec"))
+exec(
+    compile(
+        open("youtube_dl/version.py").read(), "youtube_dl/version.py", "exec"))
 
 DESCRIPTION = "YouTube video downloader"
 LONG_DESCRIPTION = (
     "Command-line program to download videos from YouTube.com and other video sites"
 )
 
-py2exe_console = [
-    {
-        "script": "./youtube_dl/__main__.py",
-        "dest_base": "youtube-dl",
-        "version": __version__,
-        "description": DESCRIPTION,
-        "comments": LONG_DESCRIPTION,
-        "product_name": "youtube-dl",
-        "product_version": __version__,
-    }
-]
+py2exe_console = [{
+    "script": "./youtube_dl/__main__.py",
+    "dest_base": "youtube-dl",
+    "version": __version__,
+    "description": DESCRIPTION,
+    "comments": LONG_DESCRIPTION,
+    "product_name": "youtube-dl",
+    "product_version": __version__,
+}]
 
 py2exe_params = {
     "console": py2exe_console,
-    "options": {"py2exe": py2exe_options},
+    "options": {
+        "py2exe": py2exe_options
+    },
     "zipfile": None,
 }
 
@@ -76,8 +78,7 @@ else:
             if not os.path.exists(fn):
                 warnings.warn(
                     "Skipping file %s since it is not present. Type  make  to build all automatically generated files."
-                    % fn
-                )
+                    % fn)
             else:
                 resfiles.append(fn)
         data_files.append((dirname, resfiles))
@@ -86,7 +87,9 @@ else:
         "data_files": data_files,
     }
     if setuptools_available:
-        params["entry_points"] = {"console_scripts": ["youtube-dl = youtube_dl:main"]}
+        params["entry_points"] = {
+            "console_scripts": ["youtube-dl = youtube_dl:main"]
+        }
     else:
         params["scripts"] = ["bin/youtube-dl"]
 
@@ -120,7 +123,8 @@ setup(
     name="youtube_dl",
     version=__version__,
     description="YouTube video downloader CLI",
-    long_description="Command-line program to download videos from sites, without copyright fascism",
+    long_description=
+    "Command-line program to download videos from sites, without copyright fascism",
     url="https://github.com/ytdl-org/youtube-dl",
     author="Ricardo Garcia",
     author_email="ytdl@yt-dl.org",
@@ -163,5 +167,4 @@ setup(
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
     cmdclass={"build_lazy_extractors": build_lazy_extractors},
-    **params
-)
+    **params)
