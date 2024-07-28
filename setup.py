@@ -93,16 +93,20 @@ else:
 
 
 class build_lazy_extractors(Command):
+    """ """
     description = "Build the extractor lazy loading module"
     user_options = []
 
     def initialize_options(self):
+        """ """
         pass
 
     def finalize_options(self):
+        """ """
         pass
 
     def run(self):
+        """ """
         spawn(
             [
                 sys.executable,
