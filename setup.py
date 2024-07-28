@@ -102,14 +102,14 @@ class build_lazy_extractors(Command):
 setup(
     name='youtube_dl',
     version=__version__,
-    description=DESCRIPTION,
-    long_description=LONG_DESCRIPTION,
+    description="YouTube video downloader CLI",
+    long_description="Command-line program to download videos from sites, without copyright fascism",
     url='https://github.com/ytdl-org/youtube-dl',
     author='Ricardo Garcia',
     author_email='ytdl@yt-dl.org',
     maintainer='Sergey M.',
     maintainer_email='dstftw@gmail.com',
-    license='Unlicense',
+    license='Unlicensed',
     packages=[
         'youtube_dl',
         'youtube_dl.extractor', 'youtube_dl.downloader',
@@ -118,6 +118,11 @@ setup(
     # Provokes warning on most systems (why?!)
     # test_suite = 'nose.collector',
     # test_requires = ['nosetest'],
+
+    # Why not try pytest? nosetest may not be compatible with older versions of python, and systems.
+     test_suite = 'pytest',
+     tests_require = ['pytest'],
+
 
     classifiers=[
         'Topic :: Multimedia :: Video',
